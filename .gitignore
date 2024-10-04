@@ -7,6 +7,11 @@ font/show
 font/*.font
 sin.inc
 
+# softlink
+sdk
+Makefile.sdk
+hw/board.h
+
 # Generated files of tools
 tools/io
 tools/*.[do]

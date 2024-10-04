@@ -6,7 +6,7 @@
  */
 
 /*
- * @@@ This is for an M1s Dock with the following additional devices:
+ * @@@ This is for an M0P Dock with the following additional devices:
  * - Display module (TFT controller on SPI, touch panel controller on I2C)
  * - BMA400 acceleration sensor on I2C
  * - ATECC608 Secure Element on I2C
@@ -23,17 +23,17 @@
 
 /* Left and right if USB is "down" and the display is facing upward */
 
-#define	BUTTON_R	22	/* IO22_Button1 */
-#define	BUTTON_L	23	/* IO23_Button2 */
+#define	BUTTON_R	3	/* IO3_Button1 */
+#define	BUTTON_L	3	/* IO3_Button2 */
 
 /* --- Display module: TFT ------------------------------------------------- */
 
-#define LCD_CS		12	/* IO12_LCD_DBI_CS */
-#define LCD_DnC		13	/* IO13_LCD_DBI_DC */
-#define LCD_MOSI	25	/* IO25_LCD_DBI_SDA */
-#define LCD_SCLK	19	/* IO19_LCD_DBI_SCK */
+#define LCD_CS		17	/* IO17_LCD_DBI_CS */
+#define LCD_DnC		18	/* IO18_LCD_DBI_DC */
+#define LCD_MOSI	19	/* IO29_LCD_DBI_SDA */
+#define LCD_SCLK	9	/* IO9_LCD_DBI_SCK */
 
-#define LCD_RST		24	/* IO24_LCD_RESET */
+#define LCD_RST		27	/* IO27_LCD_RESET */
 
 #define LCD_SPI		0
 
@@ -42,23 +42,25 @@
 
 /* --- M1s I2C ------------------------------------------------------------- */
 
-#define I2C0_SDA	7	/* IO7_CAM_I2C0_SDA */
-#define I2C0_SCL	6	/* IO7_CAM_I2C0_SDA */
+#define I2C0_SDA	1	/* IO1_CAM_I2C0_SDA */
+#define I2C0_SCL	0	/* IO0_CAM_I2C0_SDA */
 
 /* --- Display module: backlight ------------------------------------------- */
 
-#define LCD_BL		11	/* IO11_LCD_BL_PWM */
+#define LCD_BL		16	/* IO16_LCD_BL_PWM */
+#define LCD_BL_OFF	1
+#define LCD_BL_ON	0
 
 /* --- Display module: touch screen ---------------------------------------- */
 
-#define TOUCH_INT	32	/* IO32_TP_TINT */
+#define TOUCH_INT	34	/* IO34_TP_TINT */
 
 #define TOUCH_I2C	0
 #define TOUCH_I2C_ADDR	0x15
 
 /* --- BMA400 -------------------------------------------------------------- */
 
-#define ACCEL_INT	31	/* IO31 */
+#define ACCEL_INT	33	/* IO33 */
 
 #define ACCEL_I2C	0
 #define ACCEL_ADDR	0x14

@@ -1,0 +1,50 @@
+#
+# Makefile.bl618 - Build the hardware-specific part of the the firmware
+#
+# This work is licensed under the terms of the MIT License.
+# A copy of the license can be found in the file LICENSE.MIT
+#
+
+CROSS = riscv64-unknown-elf-
+OBJDIR = obj-sdk/
+
+CFLAGS = -O2
+CFLAGS += -march=rv32imafcpzpsfoperand_xtheade -mabi=ilp32f -mtune=e907
+CFLAGS += -fno-builtin
+
+include Makefile.app
+
+CFLAGS += -Ihw -Ihw/bl618 -DSDK
+OBJS += sdk.o shared.o realmem.o gpio.o spi.o i2c.o trng.o sha.o \
+	st7789.o backlight.o cst816.o usb-hal.o
+
+
+vpath realmem.c hw/bl618
+vpath gpio.c hw/bl618
+vpath spi.c hw/bl618
+vpath i2c.c hw/bl618
+vpath trng.c hw/bl618
+vpath sha.c hw/bl618
+
+vpath st7789.c hw
+vpath backlight.c hw
+vpath cst816.c hw
+
+vpath sdk.c main
+vpath shared.c main
+vpath usb-hal.c usb
+
+
+all::		| $(OBJDIR:%/=%)
+all::		$(OBJDIR)libsunela.a
+
+$(OBJDIR:%/=%):
+		mkdir -p $@
+
+$(OBJDIR)libsunela.a: $(OBJS_IN_OBJDIR)
+		$(BUILD) $(AR) cr $@ $^
+
+spotless::
+		rm -f $(OBJDIR)libsunela.a
+		rm -rf obj-sdk
+		rm -rf sdk/build

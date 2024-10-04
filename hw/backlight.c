@@ -11,6 +11,7 @@
 
 #include <stdbool.h>
 
+#include "board.h"
 #include "gpio.h"
 #include "backlight.h"
 
@@ -20,7 +21,7 @@ static unsigned backlight_pin;
 
 void backlight_on(bool on)
 {
-	gpio_out(backlight_pin, on);
+	gpio_out(backlight_pin, (on == 1) ? LCD_BL_ON : LCD_BL_OFF);
 }
 
 
